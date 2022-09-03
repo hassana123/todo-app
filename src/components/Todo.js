@@ -53,19 +53,20 @@ const Todo = () => {
   return (
     <div className="todo">
       <div className="form-control">
+        <label>Add Task:</label>
         <input
           value={newTask}
           onChange={(e) => setNewTask(e.target.value)}
           type="text"
-          placeholder="Add New Task"
+          placeholder="eg. Go Fishing"
         />
       </div>
       <div className="form-control">
+        <label>Add Task Due Date:</label>
         <input
           value={newDate}
           onChange={(e) => setNewDate(e.target.value)}
           type="date"
-          placeholder="Add Date"
         />
       </div>
       <button onClick={addTask} className="btn">
