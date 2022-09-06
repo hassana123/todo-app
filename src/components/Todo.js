@@ -15,7 +15,7 @@ const Todo = () => {
 
   const [newTask, setNewTask] = useState("");
   const [newDate, setNewDate] = useState("");
-  // const [updateTask, setupdatededTask] = useState('');
+  const [updateTask, setupdatededTask] = useState("");
 
   const addTask = () => {
     if (newTask && newDate) {
@@ -48,30 +48,72 @@ const Todo = () => {
     setTasks(completeTask);
   };
 
-  //   const editTask = (e) => {};
+  const editTask = (e) => {
+    let editedTask = {
+      id: updateTask.id,
+      task: e.target.value,
+      day: e.target.value,
+      completed: updateTask.completed ? true : false,
+    };
+    setupdatededTask(editedTask);
+  };
+
+  const updatEditedTask = () => {
+    let changeTask = [...tasks].filter((task) => task.id !== updateTask.id);
+    let update = [...changeTask, updateTask];
+    setTasks(update);
+    setupdatededTask("");
+  };
+  const cancelEditedTask = () => {
+    setupdatededTask("");
+  };
 
   return (
     <div className="todo">
-      <div className="form-control">
-        <label>Add Task:</label>
-        <input
-          value={newTask}
-          onChange={(e) => setNewTask(e.target.value)}
-          type="text"
-          placeholder="eg. Go Fishing"
-        />
-      </div>
-      <div className="form-control">
-        <label>Add Task Due Date:</label>
-        <input
-          value={newDate}
-          onChange={(e) => setNewDate(e.target.value)}
-          type="date"
-        />
-      </div>
-      <button onClick={addTask} className="btn">
-        Add Task
-      </button>
+      {updateTask ? (
+        <div className="update">
+          <div className="form-control">
+            <label>Update Task:</label>
+            <input
+              value={updateTask.task}
+              onChange={(e) => editTask(e)}
+              type="text"
+              placeholder="eg. Go Fishing"
+            />
+          </div>
+          <div className="btns">
+            <button onClick={cancelEditedTask} className="cancel">
+              Cancel
+            </button>
+            <button onClick={updatEditedTask} className="update">
+              Update Task 
+            </button>
+          </div>
+        </div>
+      ) : (
+        <div>
+          <div className="form-control">
+            <label>Add Task:</label>
+            <input
+              value={newTask}
+              onChange={(e) => setNewTask(e.target.value)}
+              type="text"
+              placeholder="eg. Go Fishing"
+            />
+          </div>
+          <div className="form-control">
+            <label>Add Task Due Date:</label>
+            <input
+              value={newDate}
+              onChange={(e) => setNewDate(e.target.value)}
+              type="date"
+            />
+          </div>
+          <button onClick={addTask} className="btn">
+            Add Task
+          </button>
+        </div>
+      )}
 
       {tasks.length
         ? ""
@@ -88,7 +130,17 @@ const Todo = () => {
 
             <div className="task-icons">
               {task.completed ? null : (
-                <span className="pen">
+                <span
+                  className="pen"
+                  onClick={() =>
+                    setupdatededTask({
+                      id: task.id,
+                      task: task.task,
+                      day: task.day,
+                      completed: task.completed ? true : false,
+                    })
+                  }
+                >
                   <FontAwesomeIcon icon={faPen} />
                 </span>
               )}

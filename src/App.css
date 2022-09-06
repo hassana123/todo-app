@@ -26,6 +26,34 @@
   color: black;
   font-size: 1.3rem;
 }
+.btns{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.btns .cancel{
+    background-color: orange;
+    color: whitesmoke;
+    border: none;
+    font-size: 1rem;
+    font-weight: 300;
+    padding: 20px 30px;
+    text-align: center;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    
+}
+.btns .update {
+  background-color: #00919c;
+  color: whitesmoke;
+  border: none;
+  font-size: 1rem;
+  font-weight: 300;
+  padding: 20px 30px;
+  text-align: center;
+  border-radius: 10px;
+  margin-bottom: 20px;
+
+}
 .btn{
   background-color: #00919c;
   color: whitesmoke;
@@ -55,24 +83,32 @@
 
 .task-icons{
   margin-top: 20px;
+  /* cursor: pointer; */
+}
+.task-icons span:hover{
+  font-weight: 900;
 }
 .task-icons span{
   padding-right: 15px;
+ 
 }
 .task-icons .trash{
   color: darkred;
   transition-timing-function: cubic-bezier(0.39, 0.575, 0.565, 1);
   transition-delay: 3s;
+  cursor: pointer;
 }
 
 .task-icons .pen {
   color: darkslategrey;
+  cursor: pointer;
 }
 .completed{
   text-decoration:2px line-through black;
   text-transform: unset;
   font-size: 15px;
   transition-duration: 3s;
+  cursor: pointer;
   transition-timing-function: cubic-bezier(0.39, 0.575, 0.565, 1);
 }
 
